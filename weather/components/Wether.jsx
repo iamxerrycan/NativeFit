@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   TextInput,
   StyleSheet,
@@ -8,10 +8,10 @@ import {
   Keyboard,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 
 export default function Wether() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,7 +22,7 @@ export default function Wether() {
     setLoading(true);
     setError(null);
     try {
-      const apiKey = "4cdd5dee4b21790322c9993b89fb25d1";
+      const apiKey = '4cdd5dee4b21790322c9993b89fb25d1';
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&appid=${apiKey}&units=metric`
       );
@@ -41,10 +41,10 @@ export default function Wether() {
         }, 2000);
       }
     } catch (err) {
-      setError("Failed to fetch weather data.");
+      setError('Failed to fetch weather data.');
     } finally {
       setLoading(false);
-      setSearchQuery("");
+      setSearchQuery('');
     }
   };
 
@@ -54,9 +54,9 @@ export default function Wether() {
 
   return (
     <View style={styles.container}>
-     <View style={styles.headerContainer}>
-  <Text style={styles.header}>🌤️ Minimalist Weather</Text>
-</View>
+      <View style={styles.headerContainer}>
+        <Text style={styles.header}>🌤️ Minimalist Weather</Text>
+      </View>
 
       <View style={styles.searchContainer}>
         <TextInput
@@ -79,7 +79,11 @@ export default function Wether() {
         <View style={styles.weatherContainer}>
           <View style={styles.imgtop}>
             <Image
-              source={isDay ? require("../assets/images/sun.png") : require("../assets/images/moon.png")}
+              source={
+                isDay
+                  ? require('../assets/images/sun.png')
+                  : require('../assets/images/moon.png')
+              }
               style={styles.weatherIcon}
             />
           </View>
@@ -123,103 +127,105 @@ export default function Wether() {
         <Text style={styles.noResultsText}>Search For Location</Text>
       )}
 
-      {loading && <ActivityIndicator size="large" color="#000000" style={styles.indi} />}
+      {loading && (
+        <ActivityIndicator size="large" color="#000000" style={styles.indi} />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   headerContainer: {
-  alignItems: 'center',
-  marginBottom: 20,
-},
+    alignItems: 'center',
+    marginBottom: 20,
+  },
 
-header: {
-  fontSize: 26,
-  fontWeight: 'bold',
-  color: 'black',
-  letterSpacing: 1,
-  fontStyle: 'italic',
-},
+  header: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: 'black',
+    letterSpacing: 1,
+    fontStyle: 'italic',
+  },
   container: {
     padding: 20,
-    width: "auto",
-    height: "100%",
-    backgroundColor: "white",
-    display: "flex",
-    flexDirection: "column",
+    width: 'auto',
+    height: '100%',
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
   },
   containerweather: {
     marginTop: 20,
   },
   searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
   },
   searchInput: {
     flex: 1,
     height: 40,
-    borderColor: "gray",
+    borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
     borderRadius: 50,
   },
   searchButton: {
-    backgroundColor: "black",
+    backgroundColor: 'black',
     paddingVertical: 13,
     paddingHorizontal: 15,
     marginLeft: 10,
     borderRadius: 50,
   },
   buttonText: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
   },
   weatherContainer: {
     marginTop: 100,
     gap: 15,
-    width: "100%",
-    padding: 20,
+    width: '100%',
+    
   },
   value: {
-    fontSize: 20,
-    color: "#f5f5f5",
-    fontStyle: "italic",
-    fontWeight: "600",
+    fontSize: 15,
+    color: '#f5f5f5',
+    fontStyle: 'italic',
+    fontWeight: '500',
     letterSpacing: 0.5,
     padding: 5,
-    fontFamily: "sans-serif",
+    fontFamily: 'sans-serif',
     lineHeight: 20,
   },
   errorText: {
-    color: "red",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
+    color: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     margin: 10,
-    display: "flex",
+    display: 'flex',
   },
   weatherIcon: {
     width: 40,
     height: 40,
   },
   header: {
-    justifyContent: "center",
-    verticalAlign: "middle",
-    alignItems: "center",
+    justifyContent: 'center',
+    verticalAlign: 'middle',
+    alignItems: 'center',
     marginBottom: 20,
-    marginLeft: "35%",
-    width: "100%",
-    fontWeight: "bold",
+    marginLeft: '35%',
+    width: '100%',
+    fontWeight: 'bold',
   },
   row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   box: {
-    backgroundColor: "black",
+    backgroundColor: 'black',
     flex: 1,
     width: 200,
     height: 100,
@@ -227,16 +233,16 @@ header: {
     borderRadius: 10,
   },
   imgtop: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   indi: {
     marginTop: 20, // Adjust as needed
   },
   noResultsText: {
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    marginTop: "80%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: '80%',
   },
 });
