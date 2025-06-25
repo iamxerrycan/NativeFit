@@ -54,7 +54,10 @@ export default function Wether() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Minimalist Weather</Text>
+     <View style={styles.headerContainer}>
+  <Text style={styles.header}>🌤️ Minimalist Weather</Text>
+</View>
+
       <View style={styles.searchContainer}>
         <TextInput
           placeholder="Enter city name"
@@ -76,7 +79,7 @@ export default function Wether() {
         <View style={styles.weatherContainer}>
           <View style={styles.imgtop}>
             <Image
-              source={isDay ? require("../assets/images/sun.png") : require("../assets/images/monn.png")}
+              source={isDay ? require("../assets/images/sun.png") : require("../assets/images/moon.png")}
               style={styles.weatherIcon}
             />
           </View>
@@ -126,6 +129,18 @@ export default function Wether() {
 }
 
 const styles = StyleSheet.create({
+  headerContainer: {
+  alignItems: 'center',
+  marginBottom: 20,
+},
+
+header: {
+  fontSize: 26,
+  fontWeight: 'bold',
+  color: 'black',
+  letterSpacing: 1,
+  fontStyle: 'italic',
+},
   container: {
     padding: 20,
     width: "auto",
@@ -164,6 +179,7 @@ const styles = StyleSheet.create({
   weatherContainer: {
     marginTop: 100,
     gap: 15,
+    width: "100%",
     padding: 20,
   },
   value: {
