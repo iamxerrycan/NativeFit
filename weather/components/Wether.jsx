@@ -15,16 +15,15 @@ export default function Wether() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isDay, setIsday] = useState(false); // Set default to false
+  const [isDay, setIsday] = useState(false);
 
   const fetchWeatherData = async () => {
     Keyboard.dismiss();
     setLoading(true);
     setError(null);
     try {
-      const apiKey = '4cdd5dee4b21790322c9993b89fb25d1';
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&appid=${apiKey}&units=metric`
+        `https://rest-api-backend-lad4.onrender.com/weather?q=${searchQuery}`
       );
       const data = await response.json();
 
@@ -37,7 +36,7 @@ export default function Wether() {
       } else {
         setError(`Location not found: ${data.message}`);
         setTimeout(() => {
-          setError(false);
+          setError(null);
         }, 2000);
       }
     } catch (err) {
@@ -47,10 +46,6 @@ export default function Wether() {
       setSearchQuery('');
     }
   };
-
-  useEffect(() => {
-    setError(null);
-  }, []);
 
   return (
     <View style={styles.container}>
@@ -65,10 +60,7 @@ export default function Wether() {
           onChangeText={setSearchQuery}
           style={styles.searchInput}
         />
-        <TouchableOpacity
-          style={styles.searchButton}
-          onPress={fetchWeatherData}
-        >
+        <TouchableOpacity style={styles.searchButton} onPress={fetchWeatherData}>
           <Text style={styles.buttonText}>Search</Text>
         </TouchableOpacity>
       </View>
@@ -135,28 +127,22 @@ export default function Wether() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    height: '100%',
+    backgroundColor: 'white',
+    flexDirection: 'column',
+  },
   headerContainer: {
     alignItems: 'center',
     marginBottom: 20,
   },
-
   header: {
     fontSize: 26,
     fontWeight: 'bold',
     color: 'black',
     letterSpacing: 1,
     fontStyle: 'italic',
-  },
-  container: {
-    padding: 20,
-    width: 'auto',
-    height: '100%',
-    backgroundColor: 'white',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  containerweather: {
-    marginTop: 20,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -186,38 +172,23 @@ const styles = StyleSheet.create({
     marginTop: 100,
     gap: 15,
     width: '100%',
-    
   },
   value: {
     fontSize: 15,
     color: '#f5f5f5',
     fontStyle: 'italic',
     fontWeight: '500',
-    letterSpacing: 0.5,
     padding: 5,
     fontFamily: 'sans-serif',
-    lineHeight: 20,
   },
   errorText: {
     color: 'red',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
     margin: 10,
-    display: 'flex',
+    textAlign: 'center',
   },
   weatherIcon: {
     width: 40,
     height: 40,
-  },
-  header: {
-    justifyContent: 'center',
-    verticalAlign: 'middle',
-    alignItems: 'center',
-    marginBottom: 20,
-    marginLeft: '35%',
-    width: '100%',
-    fontWeight: 'bold',
   },
   row: {
     flexDirection: 'row',
@@ -227,22 +198,21 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: 'black',
     flex: 1,
-    width: 200,
     height: 100,
     margin: 3,
     borderRadius: 10,
+    justifyContent: 'center',
   },
   imgtop: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   indi: {
-    marginTop: 20, // Adjust as needed
+    marginTop: 20,
   },
   noResultsText: {
-    justifyContent: 'center',
-    alignItems: 'center',
     textAlign: 'center',
     marginTop: '80%',
+    color: 'gray',
   },
 });
